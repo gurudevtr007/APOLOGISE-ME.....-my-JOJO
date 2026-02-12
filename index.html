@@ -9,10 +9,19 @@
 body{
   margin:0;
   font-family:'Segoe UI',sans-serif;
-  background:linear-gradient(135deg,#fbc2eb,#a6c1ee);
-  color:#444;
+  background: linear-gradient(-45deg, #fbc2eb, #a6c1ee, #ffd1ff, #c2e9fb);
+  background-size: 400% 400%;
+  animation: gradientMove 10s ease infinite;
   overflow-x:hidden;
   text-align:center;
+  color:#444;
+}
+
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+
 }
 
 /* Rain */
@@ -84,7 +93,7 @@ img{
 </audio>
 
 <div class="section show">
-  <div class="glow">Jojesha…</div>
+  <div class="glow">Apologise me, my thangameyyyy jojo…</div>
   <h2>I wish I could rewind time ⏳</h2>
 </div>
 
