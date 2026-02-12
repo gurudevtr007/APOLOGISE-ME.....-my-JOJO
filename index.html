@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Jojesha 💗</title>
+
+<style>
+body{
+  margin:0;
+  font-family:'Segoe UI',sans-serif;
+  background:linear-gradient(135deg,#fbc2eb,#a6c1ee);
+  color:#444;
+  overflow-x:hidden;
+  text-align:center;
+}
+
+/* Rain */
+.rain{
+  position:fixed;
+  width:2px;
+  height:15px;
+  background:rgba(255,255,255,0.5);
+  animation:fall 3s linear infinite;
+}
+
+@keyframes fall{
+  0%{transform:translateY(-100vh);}
+  100%{transform:translateY(100vh);}
+}
+
+.section{
+  padding:80px 20px;
+  min-height:100vh;
+  opacity:0;
+  transform:translateY(30px);
+  transition:1s;
+}
+
+.section.show{
+  opacity:1;
+  transform:translateY(0);
+}
+
+.glow{
+  font-size:40px;
+  font-weight:bold;
+  color:#ff4b6e;
+  text-shadow:0 0 10px #ff99ac,0 0 20px #ff99ac;
+}
+
+button{
+  padding:12px 25px;
+  border:none;
+  border-radius:30px;
+  background:#ff6b81;
+  color:white;
+  font-size:16px;
+  cursor:pointer;
+  margin-top:20px;
+}
+
+img{
+  width:250px;
+  border-radius:20px;
+  margin-top:20px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.2);
+}
+
+.choice button{
+  margin:10px;
+}
+
+.hidden{
+  display:none;
+}
+</style>
+</head>
+
+<body>
+
+<audio autoplay loop>
+<source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<div class="section show">
+  <div class="glow">Jojesha…</div>
+  <h2>I wish I could rewind time ⏳</h2>
+</div>
+
+<div class="section">
+  <h2>When I met you…</h2>
+  <p>You became my peace. My safe place.</p>
+</div>
+
+<div class="section">
+  <h2>But I hurt you.</h2>
+  <p>And that hurts me even more.</p>
+</div>
+
+<div class="section">
+  <h2>This is me…</h2>
+  <img src="photo.jpg">
+  <p>Trying to fix what I broke.</p>
+</div>
+
+<div class="section">
+  <h2>Mini Game 💗</h2>
+  <p>Click 5 hearts to continue</p>
+  <div id="heartsGame"></div>
+  <p id="gameDone" class="hidden">Thank you for giving me a chance 🥺</p>
+</div>
+
+<div class="section">
+  <h2>Will You Forgive Me?</h2>
+  <div class="choice">
+    <button onclick="yes()">Yes ❤️</button>
+    <button onclick="maybe()">I need time ⏳</button>
+    <button id="noBtn">No 😡</button>
+  </div>
+  <p id="response"></p>
+</div>
+
+<script>
+
+/* Scroll animation */
+const sections=document.querySelectorAll(".section");
+window.addEventListener("scroll",()=>{
+  sections.forEach(sec=>{
+    const top=sec.getBoundingClientRect().top;
+    if(top<window.innerHeight-100){
+      sec.classList.add("show");
+    }
+  });
+});
+
+/* Rain generator */
+function createRain(){
+  const rain=document.createElement("div");
+  rain.classList.add("rain");
+  rain.style.left=Math.random()*100+"vw";
+  document.body.appendChild(rain);
+  setTimeout(()=>rain.remove(),3000);
+}
+setInterval(createRain,100);
+
+/* Mini Game */
+let count=0;
+const game=document.getElementById("heartsGame");
+
+for(let i=0;i<10;i++){
+  const heart=document.createElement("span");
+  heart.innerHTML="💗 ";
+  heart.style.fontSize="25px";
+  heart.style.cursor="pointer";
+  heart.onclick=function(){
+    heart.style.visibility="hidden";
+    count++;
+    if(count>=5){
+      document.getElementById("gameDone").classList.remove("hidden");
+    }
+  }
+  game.appendChild(heart);
+}
+
+/* Choice Logic */
+function yes(){
+  document.getElementById("response").innerHTML="You just made me the happiest person alive 🥺💖";
+}
+
+function maybe(){
+  document.getElementById("response").innerHTML="I’ll wait. As long as it takes. 🌸";
+}
+
+const noBtn=document.getElementById("noBtn");
+noBtn.addEventListener("mouseover",()=>{
+  noBtn.style.position="absolute";
+  noBtn.style.left=Math.random()*80+"vw";
+  noBtn.style.top=Math.random()*80+"vh";
+});
+
+</script>
+
+</body>
+</html>
